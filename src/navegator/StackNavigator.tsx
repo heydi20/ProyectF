@@ -17,7 +17,7 @@ const Stack = createStackNavigator();
 export const StackNavigator = () => {
     const users: User[] = [
     { id: 1, email: 'heydi@gmail.com', password: '123456' },
-    { id: 2, email: 'genesis@gmail.com', password: '136912' }
+    { id: 2, email: 'genesis@gmail.com', password: '101010' }
 ];
 
 const [listUsers, setListUsers] = useState(users);

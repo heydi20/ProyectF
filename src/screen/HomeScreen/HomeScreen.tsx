@@ -93,7 +93,7 @@ export const HomeScreen = () => {
                     <Text style={styles.textIconCard}>{car.length}</Text>
                     <Icon
                         name='shopping-cart'
-                        size={33}
+                        size={35}
                         color={car.length > 0 ? SECUNDARY_COLOR : '#dddfe4'}
                         onPress={() => setShowModal(!showModal)} />
                 </View>

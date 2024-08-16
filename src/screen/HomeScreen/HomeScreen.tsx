@@ -44,6 +44,7 @@ export const HomeScreen = () => {
         const updateStock = productsState.map(product => product.id === idProduct
             ? { ...product, stock: product.stock - quantity }
             : product);
+            
         setProductsState(updateStock);
         addProduct(idProduct, quantity);
     }
@@ -74,7 +75,13 @@ export const HomeScreen = () => {
         setCar([...car, newProductCar]);
 
         }
-    }
+    };
+
+    const carIcon= () => {
+        if (car.length > 0) {
+            setShowModal(!showModal);
+        }
+    };
 
     return (
         <View style={styles.containerHome}>
@@ -87,9 +94,10 @@ export const HomeScreen = () => {
                     <Icon
                         name='shopping-cart'
                         size={33}
-                        color={SECUNDARY_COLOR}
+                        color={car.length > 0 ? SECUNDARY_COLOR : '#dddfe4'}
                         onPress={() => setShowModal(!showModal)} />
                 </View>
+
             </View>
                 <FlatList data={productsState}
                     renderItem={({ item }) => <CardProduct product={item} changeStockProduct={changeStockProduct} />}

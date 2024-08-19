@@ -6,7 +6,7 @@ import { styles } from '../../theme/appTheme';
 import { SECUNDARY_COLOR } from '../../commons/constans';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ProductScreen } from '../ProductScreen/ProductScreen';
-import { CommonActions } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 
 export interface Product {
     id: number;
@@ -85,6 +85,7 @@ export const HomeScreen = () => {
             setShowModal(!showModal);
         }
     };
+    const navigation = useNavigation();
 
     return (
         <View style={styles.containerHome}>
@@ -98,7 +99,7 @@ export const HomeScreen = () => {
                         name='shopping-cart'
                         size={35}
                         color={car.length > 0 ? SECUNDARY_COLOR : '#dddfe4'}
-                        onPress={()=> navigation.dispatch(CommonActions.navigate({name:'RegisterScreen'}))} />
+                        onPress={()=> navigation.dispatch(CommonActions.navigate({name:'ProductScreen'}))} />
                 </View>
 
             </View>

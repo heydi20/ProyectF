@@ -5,7 +5,8 @@ import { CardProduct } from './components/CardProduct';
 import { styles } from '../../theme/appTheme';
 import { SECUNDARY_COLOR } from '../../commons/constans';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { ModalCar } from './components/ModalCar';
+import { ProductScreen } from '../ProductScreen/ProductScreen';
+import { CommonActions } from '@react-navigation/native';
 
 export interface Product {
     id: number;
@@ -32,6 +33,8 @@ export const HomeScreen = () => {
         { id: 6, name: 'Falda Menta', price: 59.00, stock: 6, pathImage: 'https://ivannyboutique.com/27941-large_default/falda-alicia-menta.jpg' },
         { id: 7, name: 'Saco Naranja', price: 39.00, stock: 1, pathImage: 'https://ivannyboutique.com/22132-large_default/saco-laura-naranja.jpg' },
         { id: 8, name: 'Zapatos Corina', price: 58.60, stock: 3, pathImage: 'https://ivannyboutique.com/29221-large_default/zapatos-corina.jpg' },
+        { id: 9, name: 'Vestido azul', price: 39.00, stock: 1, pathImage: 'https://acdn.mitiendanube.com/stores/001/943/426/products/40306b64-a7a1-406f-99c1-75ab83cf32741-546f03b5190658f22016940113110907-320-0.webp' },
+        { id: 10, name: 'Pantalon rojo', price: 58.60, stock: 3, pathImage: 'https://acdn.mitiendanube.com/stores/001/943/426/products/e065490f-a5b3-4aa6-a292-1491c1df42d51-d05fc9d0766ee65d1c16850698204795-320-0.webp' },
     ];
     
     const [productsState, setProductsState] = useState(products);
@@ -95,24 +98,18 @@ export const HomeScreen = () => {
                         name='shopping-cart'
                         size={35}
                         color={car.length > 0 ? SECUNDARY_COLOR : '#dddfe4'}
-                        onPress={() => {
-                            if (car.length > 0) {
-                                setShowModal(true);
-                            }
-                        }}
-                        disabled={car.length === 0} />
+                        onPress={()=> navigation.dispatch(CommonActions.navigate({name:'RegisterScreen'}))} />
                 </View>
 
             </View>
                 <FlatList data={productsState}
-                    renderItem={({ item }) => <CardProduct product={item} changeStockProduct={changeStockProduct}/>}
+                    renderItem={({ item }) => <CardProduct product={item} changeStockProduct={changeStockProduct} />}
                     keyExtractor={item => item.id.toString()} />
 
-            <ModalCar 
+            <ProductScreen 
             isVisible={showModal} car={car} 
             setShowModal={() => setShowModal(!showModal)} 
             cleanCar={setCar}/>
         </View>
     )
 }
-

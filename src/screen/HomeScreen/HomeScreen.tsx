@@ -95,12 +95,17 @@ export const HomeScreen = () => {
                         name='shopping-cart'
                         size={35}
                         color={car.length > 0 ? SECUNDARY_COLOR : '#dddfe4'}
-                        onPress={() => setShowModal(!showModal)} />
+                        onPress={() => {
+                            if (car.length > 0) {
+                                setShowModal(true);
+                            }
+                        }}
+                        disabled={car.length === 0} />
                 </View>
 
             </View>
                 <FlatList data={productsState}
-                    renderItem={({ item }) => <CardProduct product={item} changeStockProduct={changeStockProduct} />}
+                    renderItem={({ item }) => <CardProduct product={item} changeStockProduct={changeStockProduct}/>}
                     keyExtractor={item => item.id.toString()} />
 
             <ModalCar 
